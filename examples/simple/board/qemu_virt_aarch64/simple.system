@@ -5,6 +5,15 @@
  SPDX-License-Identifier: BSD-2-Clause
 -->
 <system>
+  <domain_schedule>
+    <domain name="domain1" length="10" />
+    <domain name="domain0" length="400" />
+    <domain name="domain1" length="10" />
+    <domain name="domain3" length="100" />
+    <domain name="domain1" length="10" />
+    <domain name="domain2" length="100" />
+    <domain name="domain4" length="370" />
+  </domain_schedule>
     <!--
      Here we give the guest 256MiB to use as RAM. Note that we use 2MiB page
      sizes for efficiency, it does not have any functional effect.
@@ -26,7 +35,7 @@
     -->
     <memory_region name="gic_vcpu" size="0x1_000" phys_addr="0x8040000" />
 
-    <protection_domain name="VMM" priority="254">
+    <protection_domain name="VMM" priority="254" domain="domain0">
         <program_image path="vmm.elf" />
         <!--
             Currently the VMM is expecting the address set to the variable
